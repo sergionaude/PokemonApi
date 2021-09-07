@@ -1,0 +1,1 @@
+Aplicación que realiza una busqueda del pokemon deseado colocando el nombre en la barra de busqueda, consume la API de pokemon para obtener los datos.
