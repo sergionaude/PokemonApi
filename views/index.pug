@@ -1,0 +1,105 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+    title Pockemon Api
+  body    
+      
+    nav.navbar.navbar-dark.bg-dark(style="max-width:100%;")
+      form.agregar-proyecto( action="/resultados" method="POST" )
+        input(type="text" id="nombrePokemon" name="nombrePokemon" placeholder="Buscar pokemon" )
+        input(type="submit" value="Buscar" class="boton" )
+      .row.mt-lg-2.ml-lg-2
+      
+    if(pokemonModel && !error)
+      .row.mt-lg-5.ml-md-3
+        .col-md-3
+          .card(style='width: 18rem;')            
+            img.card-img-top(src=`${pokemonModel.imagenFront}` alt='Imagen del pokemon' id='imagenPokemonFront'  style='visibility: visible; position: fixed; top: 50; left: 20; width: 300px;')
+            img.card-img-top(src=`${pokemonModel.imagenBack}` alt='Imagen del pokemon' id='imagenPokemonBack' style='visibility: hidden; position: fixed; top: 50; left: 20; width: 300px;')
+              
+          .card-body(style='position: fixed; bottom:100px; left: 20px; width: 300px;')                                                    
+            h5.card-title=pokemonModel.nombre
+            button.btn.btn-primary.btn-lg.mr-5(type='button' id="btnImgFront" onclick=`${pokemonModel.imagenMuestra= !pokemonModel.imagenMuestra}` ) Front                                
+              script.
+                document.getElementById("btnImgFront").addEventListener("click", function( event ) {
+                  document.getElementById('imagenPokemonBack').style.visibility = "hidden", 
+                  document.getElementById('imagenPokemonFront').style.visibility = "visible"});
+                
+            button.btn.btn-primary.btn-lg(type='button' id="btnImgBack") Back
+              script.
+                document.getElementById("btnImgBack").addEventListener("click", function( event ) {
+                  document.getElementById('imagenPokemonBack').style.visibility = "visible", 
+                  document.getElementById('imagenPokemonFront').style.visibility = "hidden"});
+
+
+            p.card-text=pokemonModel.descripcion            
+        .col
+          div
+            h2=pokemonModel.idp
+            h6 Lista de movimientos
+            .card(style='width: 18rem;')
+              ul.list-group.list-group-flush
+                li.list-group-item(id='mov1')
+                  script. 
+                    document.getElementById("mov1").addEventListener("click", function( event ) {
+                      var x = document.getElementById("descMov1");
+                      if (x.style.display === "none") {
+                        x.style.display = "block";
+                        } 
+                      else {
+                        x.style.display = "none";
+                        }       
+                    });                 
+
+                  p=pokemonModel.movimientos[0]
+                  small(id='descMov1' style='display:none')=pokemonModel.descMovimientos[0]  
+                
+
+                li.list-group-item(id='mov2') 
+                  script. 
+                    document.getElementById("mov2").addEventListener("click", function( event ) {
+                      var x = document.getElementById("descMov2");
+                      if (x.style.display === "none") {
+                        x.style.display = "block";
+                        } 
+                      else {
+                        x.style.display = "none";
+                        }       
+                    });
+                  p=pokemonModel.movimientos[1]
+                  small(id='descMov2' style='display:none')=pokemonModel.descMovimientos[1]                   
+
+                li.list-group-item(id='mov3')    
+                  script. 
+                    document.getElementById("mov3").addEventListener("click", function( event ) {
+                      var x = document.getElementById("descMov3");
+                      if (x.style.display === "none") {
+                        x.style.display = "block";
+                        } 
+                      else {
+                        x.style.display = "none";
+                        }       
+                    });
+                  p=pokemonModel.movimientos[2]
+                  small(id='descMov3' style='display:none')=pokemonModel.descMovimientos[2]                   
+                
+                 
+          .mt-lg-5
+            h6 Propiedades
+            .card(style='width: 18rem;')
+              ul.list-group.list-group-flush
+                li.list-group-item Peso:  
+                  span=pokemonModel.peso
+                li.list-group-item Altura: 
+                  span=pokemonModel.altura
+                li.list-group-item Habilidad: 
+                  span=pokemonModel.habilidad
+                li.list-group-item(style= `background-color: ${pokemonModel.colorTipo}` ) tipo: 
+                  span=pokemonModel.tipo
+    else
+      div.container
+        h4=mensaje

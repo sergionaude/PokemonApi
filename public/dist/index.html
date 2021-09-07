@@ -1,0 +1,74 @@
+<head><script defer src="./public/bundle.js"></script></head>doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+    title Document
+  body    
+    script. 
+      addEventListener('load', () => alert('holamundo') )
+
+    nav.navbar.navbar-dark.bg-dark
+      form.agregar-proyecto( action="/resultados" method="POST" )
+        input(type="text" id="nombrePokemon" name="nombrePokemon" placeholder="Buscar pokemon" )
+        input(type="submit" value="Buscar" class="boton" )
+    
+      
+      //- form.form-inline(action="/resultados" method="POST")
+      //-   //- input.form-control.mr-lg-2(type='search' placeholder='Search' aria-label='Search')
+      //-   input.form-control.mr-lg-2(type="text" id="nombrePokemon" name="nombrePokemon" placeholder="Buscar un pokemon" )
+      //-   button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
+    .row.mt-lg-3.ml-lg-3
+      //- form.agregar-proyecto( action="/resultados" method="POST" )
+      //-   input(type="text" id="nombrePokemon" name="nombrePokemon" placeholder="Buscar pokemon" )
+        
+        input(type="submit" value="Buscar" class="boton" )
+    
+    if(pokemonModel && !error)
+      .row.mt-lg-5.ml-lg-3
+        .col-md-3
+          .card(style='width: 18rem;')
+            img.card-img-top(src=`${pokemonModel.imagenMuestra? pokemonModel.imagenFront: pokemonModel.imagenBack}` alt='Imagen del pokemon' onclick=`${pokemonModel.imagenMuestra= !pokemonModel.imagenMuestra}`)
+            
+            .card-body              
+                
+              h5.card-title=pokemonModel.nombre
+              button.btn.btn-primary.btn-lg.mr-5(type='button' id="btnImgFront" onclick=`${pokemonModel.imagenMuestra= !pokemonModel.imagenMuestra}` ) Front                
+              button.btn.btn-primary.btn-lg(type='button' id="btnImgBack") Back
+              input(type='checkbox' onclick="alert('clicked')")
+              h2=pokemonModel.imagenMuestra
+              
+              p.card-text=pokemonModel.descripcion
+            
+        .col
+          div
+            h2=pokemonModel.idp
+            p Lista de movimientos
+            .card(style='width: 18rem;')
+              ul.list-group.list-group-flush
+                li.list-group-item Movimiento1: 
+                  span=pokemonModel.movimientos[0]
+                li.list-group-item Movimiento2: 
+                  span=pokemonModel.movimientos[1]
+                li.list-group-item Movimiento3:  
+                  span=pokemonModel.movimientos[2]
+          .mt-lg-5
+            p Propiedades
+            .card(style='width: 18rem;')
+              ul.list-group.list-group-flush
+                li.list-group-item Peso:  
+                  span=pokemonModel.peso
+                li.list-group-item Altura: 
+                  span=pokemonModel.altura
+                li.list-group-item Habilidad: 
+                  span=pokemonModel.habilidad
+                li.list-group-item(style= `background-color: ${pokemonModel.colorTipo}` ) tipo: 
+                  span=pokemonModel.tipo
+    else
+      div.container
+        h4=mensaje
+      
+
+
