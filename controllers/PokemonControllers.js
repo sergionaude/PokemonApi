@@ -113,12 +113,12 @@ exports.resultadosPokemon = async (req, resp) => {
 
     catch(error){
         console.log(error);
-        // const mensaje = "Pokemon no encontrado, puedes intentar con otro"
-        // resp.render('index',{
-        //     pokemonModel,
-        //     error,
-        //     mensaje,
-        // });    
+        const mensaje = "Pokemon no encontrado, puedes intentar con otro"
+        resp.render('index',{
+            pokemonModel,
+            error,
+            mensaje,
+        });    
     }
     
     // try{
