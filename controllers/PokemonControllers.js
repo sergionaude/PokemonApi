@@ -120,20 +120,3 @@ exports.resultadosPokemon = async (req, resp) => {
             mensaje,
         });    
     }
-    
-    // try{
-        
-    //     resp.render('index',{
-    //         pokemonModel
-    //     });
-    // }
-    // catch(error){
-    //     console.log(error);
-    //     const mensaje = "Pokemon no encontrado, puedes intentar con otro"
-    //     resp.render('index',{
-    //         pokemonModel,
-    //         error,
-    //         mensaje,
-    //     });
-    // }
-}
