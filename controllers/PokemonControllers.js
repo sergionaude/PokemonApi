@@ -120,3 +120,4 @@ exports.resultadosPokemon = async (req, resp) => {
             mensaje,
         });    
     }
+}
